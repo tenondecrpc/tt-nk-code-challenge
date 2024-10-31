@@ -1,0 +1,29 @@
+{
+  "name": "tt-nk-code-challenge",
+  "version": "0.0.1",
+  "description": "Create a simple RESTful API using Node.js and Express that allows users to manage a list of tasks",
+  "main": "dist/index.ts",
+  "scripts": {
+    "start": "node dist/index.js",
+    "start:dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.8.6",
+    "concurrently": "^9.0.1",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
