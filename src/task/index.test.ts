@@ -10,6 +10,7 @@ jest.mock('../datasource', () => ({
             save: jest.fn(),
             update: jest.fn(),
             delete: jest.fn(),
+            findOneBy: jest.fn(),
         },
     },
 }));
@@ -79,6 +80,7 @@ describe('Task Controller', () => {
             mockRequest.params = { id: '1' };
             mockRequest.body = { title: 'Updated Task' };
             const mockTask = { id: 1, title: 'Updated Task' };
+            (AppDataSource.manager.findOneBy as jest.Mock).mockResolvedValue(mockTask);
             (AppDataSource.manager.update as jest.Mock).mockResolvedValue(mockTask);
 
             await taskController.update(mockRequest as Request, mockResponse as Response);
@@ -110,6 +112,8 @@ describe('Task Controller', () => {
     describe('remove', () => {
         it('should remove a task successfully', async () => {
             mockRequest.params = { id: '1' };
+            const mockTask = { id: 1, title: 'Updated Task' };
+            (AppDataSource.manager.findOneBy as jest.Mock).mockResolvedValue(mockTask);
             (AppDataSource.manager.delete as jest.Mock).mockResolvedValue({ affected: 1 });
 
             await taskController.remove(mockRequest as Request, mockResponse as Response);
