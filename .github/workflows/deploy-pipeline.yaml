@@ -1,10 +1,10 @@
-name: Deploy Nodejs Application
+name: Deploy NodeJS Application with Docker Hub
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -14,12 +14,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Create .env file
         run: echo "HOST_PORT=${{ secrets.HOST_PORT }}" >> .env
-      - name: Cat .env file
+      - name: Cat .env temporal view file
         run: cat .env
       - name: Temporal test
-        env:
-          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: echo "token=$DOCKER_TOKEN"
       - name: Login to docker hub
         env:
@@ -27,10 +24,10 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         run: echo "$DOCKER_TOKEN" | docker login --username "$DOCKER_USERNAME" --password-stdin
       - name: Build docker image
-        run: docker build -t tenondecrpc/tt-nk-code-challenge .  
+        run: docker build -t tenondecrpc/tt-nk-code-challenge .
       - name: Publish image to docker hub
         run: docker push tenondecrpc/tt-nk-code-challenge:latest
-        
+
   deploy:
     needs: build
     runs-on: self-hosted
@@ -38,6 +35,6 @@ jobs:
       - name: Pull image from docker hub
         run: docker pull tenondecrpc/tt-nk-code-challenge:latest
       - name: Delete old container
-        run: docker rm -f nodejs-app-container 
+        run: docker rm -f nodejs-app-container
       - name: Run docker container
         run: docker run -d -p 3000:3000 --name nodejs-app-container tenondecrpc/tt-nk-code-challenge
