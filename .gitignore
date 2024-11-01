@@ -41,4 +41,4 @@ dist/**/*
 yarn.lock
 
 # Db files
-.sqlite
+*.sqlite

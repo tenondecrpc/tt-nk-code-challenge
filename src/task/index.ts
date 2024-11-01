@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+
 import { Task } from "./entity"
 import { AppDataSource } from "../datasource"
 
@@ -8,7 +9,10 @@ async function retrieveAll(req: Request, res: Response): Promise<any> {
 }
 
 async function create(req: Request, res: Response): Promise<any> {
-    const body = req.body;
+    const body = req.body || {};
+    if (!body.title) {
+        return res.status(400).json({statusCode: 400, message: 'Title in the body is missing' });
+    }
     const task = new Task();
     task.title = body.title;
     await AppDataSource.manager.save(task);
@@ -18,17 +22,22 @@ async function create(req: Request, res: Response): Promise<any> {
 
 async function update(req: Request, res: Response): Promise<any> {
     const params = req.params;
-    const body = req.body;
+    const body = req.body || {};
+    if (!body.title) {
+        return res.status(400).json({statusCode: 400, message: 'Title in the body is missing' });
+    }
     const task = new Task();
     task.title = body.title;
     task.completed = body.completed;
     await AppDataSource.manager.update(Task, params.id, task);
-    return res.json({statusCode: 200, message: 'Update an existing task successfully', task: task });
+
+    return res.json({statusCode: 200, message: 'Update an existing task successfully', task: {...task, completed: task.completed} });
 }
 
 async function remove(req: Request, res: Response): Promise<any> {
     const params = req.params;
     await AppDataSource.manager.delete(Task, params.id);
+
     return res.json({statusCode: 200, message: 'Remove a task successfully', id: params.id });
 }
 
