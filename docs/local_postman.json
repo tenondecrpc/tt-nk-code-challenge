@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "d3ab1abf-8187-4b44-ab6e-46cc41e5439a",
+		"name": "APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "579898"
+	},
+	"item": [
+		{
+			"name": "retrieveTasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/tasks",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"tasks"
+					]
+				},
+				"description": "### GET /tasks\n\nThis endpoint retrieves a list of tasks.\n\n#### Request\n\nThis is a simple HTTP GET request to retrieve the list of tasks.\n\n#### Response\n\nThe response will be in JSON format with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"statusCode\": {\n            \"type\": \"number\"\n        },\n        \"message\": {\n            \"type\": \"string\"\n        },\n        \"tasks\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"id\": {\n                        \"type\": \"number\"\n                    },\n                    \"title\": {\n                        \"type\": \"string\"\n                    },\n                    \"completed\": {\n                        \"type\": \"boolean\"\n                    }\n                },\n                \"required\": [\"id\", \"title\", \"completed\"]\n            }\n        }\n    },\n    \"required\": [\"statusCode\", \"message\", \"tasks\"]\n}\n\n ```\n\nThe response will have a status code of 200 and a content type of application/json. The tasks array will contain objects with id, title, and completed properties."
+			},
+			"response": []
+		},
+		{
+			"name": "newTask",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"new task\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/task",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateTask",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"task updated\",\n    \"completed\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/task/6",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"task",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeTask",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/task/6",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"task",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
