@@ -1,0 +1,151 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "API documentation for Task CRUD operations",
+      "version": "0.0.1",
+      "title": "Task API"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "schemes": ["http"],
+    "paths": {
+      "/tasks": {
+        "get": {
+          "summary": "Get all tasks",
+          "description": "Retrieve a list of all tasks",
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Task"
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new task",
+          "description": "Add a new task to the list",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Task object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Task created successfully",
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          }
+        }
+      },
+      "/tasks/{id}": {
+        "get": {
+          "summary": "Get a task by ID",
+          "description": "Retrieve a task using its ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            },
+            "404": {
+              "description": "Task not found"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update an existing task",
+          "description": "Modify a task's details",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "number"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Updated task object",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Task updated successfully",
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            },
+            "404": {
+              "description": "Task not found"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete a task by ID",
+          "description": "Remove a task from the list",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Task deleted successfully"
+            },
+            "404": {
+              "description": "Task not found"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Task": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 12345
+          },
+          "title": {
+            "type": "string",
+            "example": "Sample Task"
+          },
+          "completed": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      }
+    }
+  }
+  

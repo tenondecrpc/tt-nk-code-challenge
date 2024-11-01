@@ -72,6 +72,8 @@ This project uses Docker Compose to orchestrate and run multiple services in con
   docker-compose down
   ```
 
+- **Note:**: If you are on mac, replace `docker-compose` by `docker compose`
+
 ## Usage
 
 Once the server is running, you can interact with the API using HTTP requests. The API will be available at `http://localhost:3000` by default.
@@ -115,4 +117,4 @@ To run the test suite, use the following command:
 ## Documentation
 Tu run the documentation page, use the following link:
 
-`http://localhost:3000/api-docs/`
+`https://app.swaggerhub.com/apis/tenondecrpc/tt-nk-task-api/0.0.1`
