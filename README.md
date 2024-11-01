@@ -4,6 +4,10 @@
 
 This project is a RESTful API for managing tasks. It's built with TypeScript, Express.js, and TypeORM, providing a robust backend for task creation, retrieval, updating, and deletion.
 
+## Architecture
+![image](https://github.com/user-attachments/assets/e10f3b25-115e-4628-b19e-61fe3c9c9386)
+
+
 ## Table of Contents
 
 - [Installation Local](#installation-on-local-machine)
