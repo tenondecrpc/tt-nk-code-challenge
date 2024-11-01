@@ -31,7 +31,7 @@ async function update(req: Request, res: Response): Promise<any> {
     task.completed = body.completed;
     await AppDataSource.manager.update(Task, params.id, task);
 
-    return res.json({statusCode: 200, message: 'Update an existing task successfully', task: {...task, completed: task.completed} });
+    return res.json({statusCode: 200, message: 'Update a task successfully', task: {...task, completed: task.completed} });
 }
 
 async function remove(req: Request, res: Response): Promise<any> {
