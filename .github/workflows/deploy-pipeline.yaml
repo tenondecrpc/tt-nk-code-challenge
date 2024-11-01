@@ -13,11 +13,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Create .env file
         run: echo "HOST_PORT=${{ secrets.HOST_PORT }}" >> .env
+      - name: Temporal test
+        env:
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: echo "$DOCKER_TOKEN"
       - name: Login to docker hub
         env:
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        run: echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        run: echo "$DOCKER_TOKEN" | docker login --username "$DOCKER_USERNAME" --password-stdin
       - name: Build docker image
         run: docker build -t tenondecrpc/tt-nk-code-challenge .  
       - name: Publish image to docker hub
