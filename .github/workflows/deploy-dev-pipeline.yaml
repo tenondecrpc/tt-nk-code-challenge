@@ -30,7 +30,6 @@ jobs:
       - name: Pull image from docker hub
         run: docker pull tenondecrpc/tt-nk-code-challenge:latest
       - name: Delete old container
-        # run: docker ps -a --format '{{.Names}}' | grep -w nodejs-app-container && docker rm -f nodejs-app-container
-        run: docker rm $(docker ps --all -q -f)
+        run: docker ps -a --format '{{.Names}}' | grep -w nodejs-app-container && docker rm -f nodejs-app-container
       - name: Run docker container
         run: docker run -d -p 3000:3000 --name nodejs-app-container tenondecrpc/tt-nk-code-challenge
