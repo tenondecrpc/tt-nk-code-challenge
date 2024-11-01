@@ -1,4 +1,4 @@
-name: Build and check tests
+name: Check tests files
 
 on: [push]
 

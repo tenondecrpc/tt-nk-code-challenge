@@ -6,7 +6,7 @@ export const AppDataSource = new DataSource({
     type: "sqlite",
     database: "db/task.sqlite",
     synchronize: true,
-    logging: true,
+    logging: false,
     entities: [Task],
     migrations: [],
     subscribers: [],
