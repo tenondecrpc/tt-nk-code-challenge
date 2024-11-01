@@ -115,6 +115,6 @@ To run the test suite, use the following command:
 `npm run test`
 
 ## Documentation
-Tu run the documentation page, use the following link:
+To view the documentation page, use the following link:
 
-`https://app.swaggerhub.com/apis/tenondecrpc/tt-nk-task-api/0.0.1`
+[https://app.swaggerhub.com/apis/tenondecrpc/tt-nk-task-api/0.0.1](https://app.swaggerhub.com/apis/tenondecrpc/tt-nk-task-api/0.0.1)
