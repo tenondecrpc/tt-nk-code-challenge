@@ -24,7 +24,9 @@
               }
             }
           }
-        },
+        }
+      },
+      "/task": {
         "post": {
           "summary": "Create a new task",
           "description": "Add a new task to the list",
@@ -49,7 +51,7 @@
           }
         }
       },
-      "/tasks/{id}": {
+      "/task/{id}": {
         "get": {
           "summary": "Get a task by ID",
           "description": "Retrieve a task using its ID",

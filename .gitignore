@@ -42,3 +42,6 @@ yarn.lock
 
 # Db files
 *.sqlite
+
+# Ssh files
+*.pem
