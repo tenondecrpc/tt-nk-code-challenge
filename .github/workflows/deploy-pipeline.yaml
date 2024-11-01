@@ -1,9 +1,10 @@
 name: Deploy Nodejs Application
 
 on:
-  push: 
-    branches:
-      - main
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -17,12 +18,12 @@ jobs:
         env:
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        run: echo "$DOCKER_TOKEN"
+        run: echo "token=$DOCKER_TOKEN"
       - name: Login to docker hub
         env:
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        run: echo "$DOCKER_TOKEN" | docker login --username "$DOCKER_USERNAME" --password-stdin
+        run: echo "$DOCKER_TOKEN" | docker login --username $DOCKER_USERNAME --password-stdin
       - name: Build docker image
         run: docker build -t tenondecrpc/tt-nk-code-challenge .  
       - name: Publish image to docker hub
