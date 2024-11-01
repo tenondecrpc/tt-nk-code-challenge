@@ -1,9 +1,9 @@
 name: Deploy Nodejs Application
 
 on:
-  push: 
+  pull_request: 
     branches:
-      - main
+      - ['main']
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
       - name: Create .env file
         run: echo "HOST_PORT=${{ secrets.HOST_PORT }}" >> .env
       - name: Login to docker hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}       
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
       - name: Build docker image
         run: docker build -t tenondecrpc/tt-nk-code-challenge .  
       - name: Publish image to docker hub
