@@ -8,8 +8,8 @@
     "start:dev": "nodemon src/index.ts",
     "build": "tsc",
     "test": "jest",
-    "docker:compose:up": "docker-compose up",
-    "docker:compose:down": "docker-compose down",
+    "docker:up": "docker compose up",
+    "docker:down": "docker compose down",
     "docker:ps": "docker ps"
   },
   "keywords": [],
