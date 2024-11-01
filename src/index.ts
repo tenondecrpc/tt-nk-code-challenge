@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import cors from "cors";
 import helmet from "helmet";
+import expressOasGenerator from "express-oas-generator";
 
 import taskRoutes from "./task/route";
 import "dotenv/config";
@@ -14,6 +15,8 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(taskRoutes);
+
+expressOasGenerator.init(app, {});
 
 AppDataSource.initialize()
   .then(() => {
