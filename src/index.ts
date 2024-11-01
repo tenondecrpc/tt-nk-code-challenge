@@ -2,10 +2,10 @@ import express, { Express } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import expressOasGenerator from "express-oas-generator";
-
-import taskRoutes from "./task/route";
 import "dotenv/config";
 import "reflect-metadata";
+
+import taskRoutes from "./task/route";
 import { AppDataSource } from "./datasource";
 
 const port = process.env.HOST_PORT || 3000;
