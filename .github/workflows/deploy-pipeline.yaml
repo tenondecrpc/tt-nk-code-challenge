@@ -1,9 +1,9 @@
 name: Deploy Nodejs Application
 
 on:
-  pull_request: 
+  push: 
     branches:
-      - ['main']
+      - main
 
 jobs:
   build:
