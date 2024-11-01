@@ -1,20 +1,32 @@
-name: Deploy on AWS
+name: Deploy Nodejs Application
 
-on: [pull_request]
+on:
+  push: 
+    branches:
+      - main
 
 jobs:
   build:
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        node-version: [20.x]
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build
-    - run: npm run start
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Create .env file
+        run: echo "HOST_PORT=${{ secrets.HOST_PORT }}" >> .env
+      - name: Login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}       
+      - name: Build docker image
+        run: docker build -t tenondecrpc/tt-nk-code-challenge .  
+      - name: Publish image to docker hub
+        run: docker push tenondecrpc/tt-nk-code-challenge:latest
+        
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull tenondecrpc/tt-nk-code-challenge:latest
+      - name: Delete old container
+        run: docker rm -f nodejs-app-container 
+      - name: Run docker container
+        run: docker run -d -p 3000:3000 --name nodejs-app-container tenondecrpc/tt-nk-code-challenge
