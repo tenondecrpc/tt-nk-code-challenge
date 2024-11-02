@@ -35,7 +35,7 @@ jobs:
         run: docker run -d -p 3000:3000 --name nodejs-app-container tenondecrpc/tt-nk-code-challenge
   deploy-ec2-v2:
     needs: build
-    runs-on: [self-hosted, linux]
+    runs-on: [self-hosted-v2]
     steps:
       - name: Login to docker hub
         run: echo ${{ secrets.DOCKER_TOKEN }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
