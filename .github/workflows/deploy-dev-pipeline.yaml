@@ -21,10 +21,14 @@ jobs:
       - name: Publish image to docker hub
         run: docker push tenondecrpc/tt-nk-code-challenge:latest
 
-  deploy-ec2-v1:
+  deploy-ec2-dev:
     needs: build
     runs-on: [self-hosted]
     steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
       - name: Login to docker hub
         run: echo ${{ secrets.DOCKER_TOKEN }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Pull image from docker hub
@@ -34,7 +38,7 @@ jobs:
       - name: Run docker container
         run: docker run -d -p 3000:3000 --name nodejs-app-container tenondecrpc/tt-nk-code-challenge
         
-  deploy-ec2-v2:
+  deploy-ec2-stg:
     needs: build
     runs-on: [self-hosted, self-hosted-v2]
     steps:
