@@ -56,7 +56,7 @@ This project uses Docker Compose to orchestrate and run multiple services in con
 - **Docker**: Make sure Docker is installed. You can install it by following the official instructions at [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/).
 - **Docker Compose**: Ensure that the Docker Compose version is compatible with your Docker version. Docker Compose is generally included with Docker Desktop, but you can install it manually on Linux. Installation instructions here: [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/).
 
-### Steps to Run `docker-compose.yml`
+### Steps to Run `docker-compose.yaml`
 
 1. **Clone the repository** (if you haven’t already):
    ```bash
@@ -76,7 +76,7 @@ This project uses Docker Compose to orchestrate and run multiple services in con
   docker-compose down
   ```
 
-- **Note:**: If you are on mac, replace `docker-compose` by `docker compose`
+- **Note:** If you are on mac, replace `docker-compose` by `docker compose`
 
 ## Usage
 
@@ -85,9 +85,9 @@ Once the server is running, you can interact with the API using HTTP requests. T
 ## API Endpoints
 
 - `GET /tasks`: Retrieve all tasks
-- `POST /tasks`: Create a new task
-- `PUT /tasks/:id`: Update an existing task
-- `DELETE /tasks/:id`: Delete a task
+- `POST /task`: Create a new task
+- `PUT /task/:id`: Update an existing task
+- `DELETE /task/:id`: Delete a task
 
 ### Request Body Format
 
