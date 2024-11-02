@@ -23,7 +23,7 @@ jobs:
 
   deploy-ec2-v1:
     needs: build
-    runs-on: [self-hosted, test-label]
+    runs-on: [self-hosted]
     steps:
       - name: Login to docker hub
         run: echo ${{ secrets.DOCKER_TOKEN }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
@@ -36,7 +36,7 @@ jobs:
         
   deploy-ec2-v2:
     needs: build
-    runs-on: [self-hosted-v2]
+    runs-on: [self-hosted, self-hosted-v2]
     steps:
       - name: Login to docker hub
         run: echo ${{ secrets.DOCKER_TOKEN }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
