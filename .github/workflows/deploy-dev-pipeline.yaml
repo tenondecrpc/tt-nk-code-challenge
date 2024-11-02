@@ -23,7 +23,7 @@ jobs:
 
   deploy-ec2-v1:
     needs: build
-    runs-on: [self-hosted]
+    runs-on: [self-hosted, test-label]
     steps:
       - name: Login to docker hub
         run: echo ${{ secrets.DOCKER_TOKEN }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
@@ -33,6 +33,7 @@ jobs:
         run: docker ps -a --format '{{.Names}}' | grep -w nodejs-app-container && docker rm -f nodejs-app-container
       - name: Run docker container
         run: docker run -d -p 3000:3000 --name nodejs-app-container tenondecrpc/tt-nk-code-challenge
+        
   deploy-ec2-v2:
     needs: build
     runs-on: [self-hosted-v2]
@@ -42,6 +43,6 @@ jobs:
       - name: Pull image from docker hub
         run: docker pull tenondecrpc/tt-nk-code-challenge:latest
       - name: Delete old container
-        run: docker ps -a --format '{{.Names}}' | grep -w nodejs-app-container && docker rm -f nodejs-app-container
+        run: docker rm -f nodejs-app-container 2>/dev/null || true
       - name: Run docker container
         run: docker run -d -p 3000:3000 --name nodejs-app-container tenondecrpc/tt-nk-code-challenge
