@@ -1,5 +1,5 @@
 import express, { Router, Request, Response } from 'express';
-import Task from '../index';
+import Task from '../../index';
 
 const routes: Router = express.Router();
 

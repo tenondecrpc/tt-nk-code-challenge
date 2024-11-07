@@ -1,22 +1,22 @@
 import express, { Express } from "express";
 import cors from "cors";
 import helmet from "helmet";
-import expressOasGenerator from "express-oas-generator";
 import "dotenv/config";
 import "reflect-metadata";
 
-import taskRoutes from "./task/route";
+import taskRoutesV1 from "./task/route/v1";
 import { AppDataSource } from "./datasource";
 
 const port = process.env.HOST_PORT || 3000;
 
 const app: Express = express();
+
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
-app.use(taskRoutes);
+app.use(express.urlencoded({ extended: false }));
 
-expressOasGenerator.init(app, {});
+app.use("/api/v1", taskRoutesV1);
 
 AppDataSource.initialize()
   .then(() => {
@@ -25,5 +25,5 @@ AppDataSource.initialize()
   .catch((error) => console.error(error));
 
 app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`);
+  console.log(`[server]: Server is running at http://localhost:${port}/api/v1`);
 });
