@@ -1,7 +1,7 @@
 import express, { Router, Request, Response } from 'express';
 import { checkSchema } from 'express-validator';
 
-import Task from '../../index';
+import Task from '../../controllers/index';
 import { taskCreateSchema, taskUpdateSchema } from '../../validators/request';
 
 const routes: Router = express.Router();

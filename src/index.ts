@@ -4,8 +4,8 @@ import helmet from "helmet";
 import "dotenv/config";
 import "reflect-metadata";
 
-import taskRoutesV1 from "./task/route/v1";
-import { AppDataSource } from "./datasource";
+import taskRoutesV1 from "./modules/task/routes/v1";
+import { AppDataSource } from "./database";
 
 const port = process.env.HOST_PORT || 3000;
 

@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
-import taskController from './index';
-import { AppDataSource } from "../datasource";
-import { Task } from "./entity";
 
-jest.mock('../datasource', () => ({
+import taskController from './../controllers/index';
+import { AppDataSource } from "../../../database";
+import { Task } from "../entities";
+import { httpCodes } from '../../../common/http-codes';
+
+jest.mock('../../../database', () => ({
     AppDataSource: {
         manager: {
             find: jest.fn(),
@@ -36,7 +38,7 @@ describe('Task Controller', () => {
             await taskController.retrieveAll(mockRequest as Request, mockResponse as Response);
 
             expect(AppDataSource.manager.find).toHaveBeenCalledWith(Task);
-            expect(mockResponse.status).toHaveBeenCalledWith(200);
+            expect(mockResponse.status).toHaveBeenCalledWith(httpCodes.OK);
         });
     });
 });
