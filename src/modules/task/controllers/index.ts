@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import { httpCodes } from '../../../common/http-codes';
 
-import { Task } from "../entities"
-import { AppDataSource } from "../../../database"
+import { Task } from "../entities";
+import { AppDataSource } from "../../../database";
 
 async function retrieveAll(req: Request, res: Response): Promise<any> {
     const tasks = await AppDataSource.manager.find(Task);
