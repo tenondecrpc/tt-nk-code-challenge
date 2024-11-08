@@ -1,1 +1,0 @@
-Firstly, run the application using: npm run start:dev

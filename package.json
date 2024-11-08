@@ -19,7 +19,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "express-oas-generator": "^1.0.46",
+    "express-validator": "^7.2.0",
     "helmet": "^8.0.0",
     "reflect-metadata": "^0.2.2",
     "sqlite3": "^5.1.7",
@@ -38,7 +38,9 @@
     "typescript": "^5.6.3"
   },
   "jest": {
-    "testPathIgnorePatterns": ["dist"],
+    "testPathIgnorePatterns": [
+      "dist"
+    ],
     "preset": "ts-jest",
     "testEnvironment": "node"
   }

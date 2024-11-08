@@ -21,7 +21,7 @@ jobs:
       - name: Publish image to docker hub
         run: docker push tenondecrpc/tt-nk-code-challenge:latest
 
-  deploy-ec2-dev:
+  deploy-dev:
     needs: build
     runs-on: [self-hosted]
     steps:
@@ -38,7 +38,7 @@ jobs:
       - name: Run docker container
         run: docker run -d -p 3000:3000 --name nodejs-app-container tenondecrpc/tt-nk-code-challenge
         
-  deploy-ec2-stg:
+  deploy-stg:
     needs: build
     runs-on: [self-hosted, self-hosted-v2]
     steps:
